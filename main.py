@@ -42,7 +42,7 @@ def serialize_book_detail(book):
         'preview': book.preview,
     }
 
-# view all data book
+# view all data book 
 @app.route('/books', methods=['GET'])
 def book_list():
     books = Books.query.all()
@@ -54,7 +54,7 @@ def book_list():
     return response_success({'result': books})
 
 
-# view detail book
+# view detail book berdasarkan id buku
 @app.route('/books/<book_id>', methods = ['GET'])
 def book_detail(book_id):
     book = Books.query.filter_by(id=book_id)
@@ -69,7 +69,7 @@ def book_detail(book_id):
     return response_success({'result': book})
 
 
-# create data book
+# create data book / menambahkan buku baru
 @app.route('/books', methods=['POST'])
 def book_add():
     req_data = request.get_json()
@@ -92,7 +92,7 @@ def book_add():
         return response_failed()
 
 
-# update data book
+# update data book berdasarkan id
 @app.route('/books/<book_id>', methods = ['PUT'])
 def book_update(book_id):
     book = Books.query.filter_by(id=book_id)
@@ -115,7 +115,7 @@ def book_update(book_id):
         return response_failed()
 
 
-# delete data book
+# endpoint delete data book berdasarkan id buku
 @app.route('/books/<book_id>', methods=['DELETE'])
 def book_delete(book_id):
     book = Books.query.filter_by(id=book_id)
